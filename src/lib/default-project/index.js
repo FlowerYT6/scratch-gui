@@ -41,6 +41,11 @@ const defaultProject = translator => {
         assetType: 'ImageVector',
         dataFormat: 'SVG',
         data: encoder.encode(costume1)
+    }, {
+        id: 'f249ed2a00a832fec578aa3676c37d01',
+        assetType: 'ImageVector',
+        dataFormat: 'SVG',
+        data: encoder.encode(costume2)
     }];
 };
 
