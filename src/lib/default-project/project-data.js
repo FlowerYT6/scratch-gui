@@ -68,6 +68,15 @@ const projectData = translateFunction => {
                         rotationCenterX: 30.74937882782359,
                         rotationCenterY: 58.864768144346826
                     }
+                    {
+                        assetId: 'f249ed2a00a832fec578aa3676c37d01',
+                        name: translator(messages.costume, {index: 1}),
+                        bitmapResolution: 1,
+                        md5ext: 'f249ed2a00a832fec578aa3676c37d01.svg',
+                        dataFormat: 'svg',
+                        rotationCenterX: 30.74937882782359,
+                        rotationCenterY: 58.864768144346826
+                    }
                 ],
                 sounds: [],
                 volume: 100,
