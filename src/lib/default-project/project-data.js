@@ -67,7 +67,7 @@ const projectData = translateFunction => {
                         dataFormat: 'svg',
                         rotationCenterX: 30.74937882782359,
                         rotationCenterY: 58.864768144346826
-                    }
+                    },
                     {
                         assetId: '582fd88b85c0b9dcca840d397948f4ff',
                         name: translator(messages.costume, {index: 1}),
