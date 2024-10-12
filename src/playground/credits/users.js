@@ -31,6 +31,7 @@ const contributors = [
         username: 'CST1229'
     },
     {
+        userID: '128887584',
         username: 'FurryR'
     },
     {
@@ -50,6 +51,7 @@ const contributors = [
         username: 'Tacodiva7729'
     },
     {
+        userID: '141930175',
         username: 'SimonShiki'
     },
     {
@@ -238,6 +240,7 @@ const extensionDevelopers = [
         username: 'pumpkinhasapatch'
     },
     {
+        userID: '139929771',
         username: 'qxsck'
     },
     {
@@ -261,6 +264,7 @@ const extensionDevelopers = [
         username: 'shreder95ua'
     },
     {
+        userID: '72467731',
         username: 'Skyhigh173'
     },
     {
