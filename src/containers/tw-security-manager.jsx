@@ -281,6 +281,7 @@ class TWSecurityManagerComponent extends React.Component {
         if (isAlwaysTrustedForFetching(parsed)) {
             return true;
         }
+        const origin = (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.origin : null;
         const {showModal, releaseLock} = await this.acquireModalLock();
         if (fetchOriginsTrustedByUser.has(origin)) {
             releaseLock();
