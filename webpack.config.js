@@ -185,7 +185,7 @@ module.exports = [
                 chunks: ['editor'],
                 template: 'src/playground/index.ejs',
                 filename: 'editor.html',
-                title: `${APP_NAME} - Run Scratch projects faster`,
+                title: `UltiBlocks`,
                 isEditor: true,
                 ...htmlWebpackPluginCommon
             }),
@@ -193,35 +193,35 @@ module.exports = [
                 chunks: ['player'],
                 template: 'src/playground/index.ejs',
                 filename: 'index.html',
-                title: `${APP_NAME} - Run Scratch projects faster`,
+                title: `UltiBlocks`,
                 ...htmlWebpackPluginCommon
             }),
             new HtmlWebpackPlugin({
                 chunks: ['fullscreen'],
                 template: 'src/playground/index.ejs',
                 filename: 'fullscreen.html',
-                title: `${APP_NAME} - Run Scratch projects faster`,
+                title: `UltiBlocks`,
                 ...htmlWebpackPluginCommon
             }),
             new HtmlWebpackPlugin({
                 chunks: ['embed'],
                 template: 'src/playground/embed.ejs',
                 filename: 'embed.html',
-                title: `Embedded Project - ${APP_NAME}`,
+                title: `Embedded Project - UltiBlocks`,
                 ...htmlWebpackPluginCommon
             }),
             new HtmlWebpackPlugin({
                 chunks: ['addon-settings'],
                 template: 'src/playground/simple.ejs',
                 filename: 'addons.html',
-                title: `Addon Settings - ${APP_NAME}`,
+                title: `Addon Settings - UltiBlocks`,
                 ...htmlWebpackPluginCommon
             }),
             new HtmlWebpackPlugin({
                 chunks: ['credits'],
                 template: 'src/playground/simple.ejs',
                 filename: 'credits.html',
-                title: `${APP_NAME} Credits`,
+                title: `Credits`,
                 ...htmlWebpackPluginCommon
             }),
             new CopyWebpackPlugin({

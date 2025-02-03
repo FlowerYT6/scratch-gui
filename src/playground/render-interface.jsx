@@ -204,9 +204,9 @@ class Interface extends React.Component {
     }
     handleUpdateProjectTitle (title, isDefault) {
         if (isDefault || !title) {
-            document.title = `${APP_NAME} - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
+            document.title = `UltiBlocks Editor`;
         } else {
-            document.title = `${title} - ${APP_NAME}`;
+            document.title = `${title} - UltiBlocks`;
         }
     }
     render () {
