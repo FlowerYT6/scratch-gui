@@ -339,6 +339,32 @@
         "blocks": {}
     },
     {
+        "name": "Apple Cat",
+        "tags": [
+            "food",
+            "red",
+            "crunchy",
+            "fruit",
+            "cat",
+            "animals"
+        ],
+        "isStage": false,
+        "variables": {},
+        "costumes": [
+            {
+                "assetId": "1fe66020da00ba6c793c45d652e6b9cd",
+                "name": "Apple Cat",
+                "bitmapResolution": 1,
+                "md5ext": "1fe66020da00ba6c793c45d652e6b9cd.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 29.5,
+                "rotationCenterY": 29.5
+            }
+        ],
+        "sounds": [],
+        "blocks": {}
+    },
+    {
         "name": "Arrow1",
         "tags": [
             "icons",
