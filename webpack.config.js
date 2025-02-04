@@ -76,6 +76,7 @@ const base = {
                 /node_modules[\\/]@vernier[\\/]godirect/
             ],
             options: {
+                cacheDirectory: true,
                 // Explicitly disable babelrc so we don't catch various config
                 // in much lower dependencies.
                 babelrc: false,
