@@ -355,9 +355,25 @@ const docs = [
     }
 ].map(fromHardcoded);
 
+const ubContributors = [
+    {
+        userID: '149550011',
+        username: 'AmpElectrecuted'
+    },
+    {
+        userID: '82953483',
+        username: '50_scratch_tabs'
+    },
+    {
+        userID: '38055575',
+        username: 'o97doge'
+    }
+].map(fromHardcoded);
+
 export default {
     contributors: shuffle(contributors),
     addonDevelopers: shuffle(addonDevelopers),
     extensionDevelopers: shuffle(extensionDevelopers),
-    docs: shuffle(docs)
+    docs: shuffle(docs),
+    ubContributors: shuffle(ubContributors)
 };

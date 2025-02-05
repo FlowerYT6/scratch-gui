@@ -83,6 +83,10 @@ const Credits = () => (
         </section>
         <section>
             <h2>Contributors</h2>
+            <UserList users={UserData.ubContributors} />
+        </section>
+        <section>
+            <h2>TurboWarp Contributors</h2>
             <UserList users={UserData.contributors} />
         </section>
         <section>
