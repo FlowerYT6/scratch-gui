@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {defineMessages, FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';a
 import bindAll from 'lodash.bindall';
 import bowser from 'bowser';
 import React from 'react';
@@ -1011,7 +1011,7 @@ class MenuBar extends React.Component {
                     <div className={styles.menuBarItem}>
                         <a
                             className={styles.feedbackLink}
-                            href="https://scratch.mit.edu/discuss/topic/804448"
+                            href="https://scratch.mit.edu/discuss/topic/806311"
                             rel="noopener noreferrer"
                             target="_blank"
                         >
@@ -1020,7 +1020,7 @@ class MenuBar extends React.Component {
                                 <FormattedMessage
                                     defaultMessage="UltiBlocks Forum Topic"
                                     description="Button to give feedback in the menu bar"
-                                    id="tw.feedbackButton"
+                                    id="tw.topicButton"
                                     values={{
                                         APP_NAME
                                     }}
