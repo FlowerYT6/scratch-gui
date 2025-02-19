@@ -87,8 +87,8 @@ const Footer = () => (
             <div className={styles.footerText}>
                 <FormattedMessage
                     // eslint-disable-next-line max-len
-                    defaultMessage="{APP_NAME} is not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
-                    description="Disclaimer that TurboWarp is not connected to Scratch"
+                    defaultMessage="{APP_NAME} is not affiliated with TurboWarp, Scratch, the Scratch Team, or the Scratch Foundation."
+                    description="Disclaimer that BubbleWrap & TurboWarp is not connected to Scratch"
                     id="tw.footer.disclaimer"
                     values={{
                         APP_NAME
@@ -138,9 +138,9 @@ const Footer = () => (
                         {/* Do not translate */}
                         {'TurboWarp Desktop'}
                     </a>
-                    <a href="https://packager.turbowarp.org/">
+                    <a href="https://bubblewrap.miyo.lol/packager/">
                         {/* Do not translate */}
-                        {'TurboWarp Packager'}
+                        {'BubbleWrap Packager'}
                     </a>
                     <a href="https://docs.turbowarp.org/embedding">
                         <FormattedMessage
@@ -336,8 +336,8 @@ class Interface extends React.Component {
                                 <p>
                                     <FormattedMessage
                                         // eslint-disable-next-line max-len
-                                        defaultMessage="{APP_NAME} is a Scratch mod that compiles projects to JavaScript to make them run really fast. Try it out by inputting a project ID or URL above or choosing a featured project below."
-                                        description="Description of TurboWarp on the homepage"
+                                        defaultMessage="{APP_NAME}."
+                                        description="Description of BubbleWrap on the homepage"
                                         id="tw.home.description"
                                         values={{
                                             APP_NAME

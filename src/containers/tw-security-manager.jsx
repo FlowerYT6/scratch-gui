@@ -23,7 +23,9 @@ const manuallyTrustExtension = url => {
  * @param {string} url URL as a string.
  * @returns {boolean} True if the extension can is trusted
  */
-const isTrustedExtension = url => (
+// we literally don't care anymore so, just allow ANY extension.
+const isTrustedExtension = url => (url && true);
+/*const isTrustedExtension = url => (
     // Always trust our official extension repostiory.
     url.startsWith('https://extensions.turbowarp.org/') ||
 
@@ -31,7 +33,7 @@ const isTrustedExtension = url => (
     url.startsWith('http://localhost:8000/') ||
 
     extensionsTrustedByUser.has(url)
-);
+);*/
 
 /**
  * Set of fetch resource origins that were manually trusted by the user.
@@ -52,6 +54,9 @@ const embedOriginsTrustedByUser = new Set();
 const isAlwaysTrustedForFetching = parsed => (
     // If we would trust loading an extension from here, we can trust loading resources too.
     isTrustedExtension(parsed.href) ||
+
+    parsed.origin.endsWith('.miyo.lol') ||
+    parsed.origin.endsWith('.mistium.com') ||
 
     // Any TurboWarp service such as trampoline
     parsed.origin === 'https://turbowarp.org' ||

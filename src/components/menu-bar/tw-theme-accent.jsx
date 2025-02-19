@@ -17,7 +17,7 @@ import styles from './settings-menu.css';
 const options = defineMessages({
     [ACCENT_RED]: {
         defaultMessage: 'Red',
-        description: 'Name of the red color scheme, used by TurboWarp by default.',
+        description: 'Name of the red color scheme, used by BubbleWrap by default.',
         id: 'tw.accent.red'
     },
     [ACCENT_PURPLE]: {
