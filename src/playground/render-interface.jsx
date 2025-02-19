@@ -56,7 +56,7 @@ const handleClickAddonSettings = addonId => {
 
 const messages = defineMessages({
     defaultTitle: {
-        defaultMessage: 'Run Scratch projects faster',
+        defaultMessage: 'r/woosh',
         description: 'Title of homepage',
         id: 'tw.guiDefaultTitle'
     }
