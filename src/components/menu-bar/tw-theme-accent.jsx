@@ -1,44 +1,33 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {FormattedMessage, defineMessages} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 import {connect} from 'react-redux';
 
+import {persistTheme} from '../../lib/themes/themePersistance.js';
+import {accentMenuOpen, closeSettingsMenu, openAccentMenu} from '../../reducers/menus.js';
+import {setTheme} from '../../reducers/theme.js';
+import {MenuItem, Submenu} from '../menu/menu.jsx';
 import check from './check.svg';
 import dropdownCaret from './dropdown-caret.svg';
-import {MenuItem, Submenu} from '../menu/menu.jsx';
-import {ACCENT_BLUE, ACCENT_MAP, ACCENT_PURPLE, ACCENT_RED, ACCENT_RAINBOW, Theme} from '../../lib/themes/index.js';
-import {openAccentMenu, accentMenuOpen, closeSettingsMenu} from '../../reducers/menus.js';
-import {setTheme} from '../../reducers/theme.js';
-import {persistTheme} from '../../lib/themes/themePersistance.js';
-import rainbowIcon from './tw-accent-rainbow.svg';
 import styles from './settings-menu.css';
+import rainbowIcon from './tw-accent-rainbow.svg';
 
-const options = defineMessages({
-    [ACCENT_RED]: {
-        defaultMessage: 'Red',
-        description: 'Name of the red color scheme, used by BubbleWrap by default.',
-        id: 'tw.accent.red'
-    },
-    [ACCENT_PURPLE]: {
-        defaultMessage: 'Purple',
-        description: 'Name of the purple color scheme. Matches modern Scratch.',
-        id: 'tw.accent.purple'
-    },
-    [ACCENT_BLUE]: {
-        defaultMessage: 'Blue',
-        description: 'Name of the blue color scheme. Matches Scratch before the high contrast update.',
-        id: 'tw.accent.blue'
-    },
-    [ACCENT_RAINBOW]: {
-        defaultMessage: 'Rainbow',
-        description: 'Name of color scheme that uses a rainbow.',
-        id: 'tw.accent.rainbow'
-    }
-});
+import {ACCENT_MAP, Theme} from '../../lib/themes/index.js';
+
+const accents = Object.create(null);
+
+for (const key in ACCENT_MAP) {
+    accents[key] = {
+        defaultMessage: ACCENT_MAP[key].defaultMessage,
+        description: ACCENT_MAP[key].description,
+        id: ACCENT_MAP[key].id
+    };
+}
+const options = accents;
 
 const icons = {
-    [ACCENT_RAINBOW]: rainbowIcon
+    rainbow: rainbowIcon
 };
 
 const ColorIcon = props => (
@@ -55,8 +44,8 @@ const ColorIcon = props => (
             className={styles.accentIconOuter}
             style={{
                 // menu-bar-background is var(...), don't want to evaluate with the current values
-                backgroundColor: ACCENT_MAP[props.id].guiColors['looks-secondary'],
-                backgroundImage: ACCENT_MAP[props.id].guiColors['menu-bar-background-image']
+                backgroundColor: ACCENT_MAP[props.id].accent.guiColors['looks-secondary'],
+                backgroundImage: ACCENT_MAP[props.id].accent.guiColors['menu-bar-background-image']
             }}
         />
     )

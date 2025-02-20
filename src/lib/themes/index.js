@@ -1,28 +1,96 @@
 import defaultsDeep from 'lodash.defaultsdeep';
 
-import * as accentPurple from './accent/purple';
-import * as accentBlue from './accent/blue';
-import * as accentRed from './accent/red';
-import * as accentRainbow from './accent/rainbow';
-
+// gui theming
 import * as guiLight from './gui/light';
 import * as guiDark from './gui/dark';
 
+// block theming
 import * as blocksThree from './blocks/three';
 import * as blocksHighContrast from './blocks/high-contrast';
 import * as blocksDark from './blocks/dark';
 
-const ACCENT_PURPLE = 'purple';
-const ACCENT_BLUE = 'blue';
-const ACCENT_RED = 'red';
-const ACCENT_RAINBOW = 'rainbow';
-const ACCENT_MAP = {
-    [ACCENT_PURPLE]: accentPurple,
-    [ACCENT_BLUE]: accentBlue,
-    [ACCENT_RED]: accentRed,
-    [ACCENT_RAINBOW]: accentRainbow
+// accent theming
+import * as accentRed from './accent/red';
+import * as accentPurple from './accent/purple';
+import * as accentBlue from './accent/blue';
+import * as accentGreen from './accent/green';
+import * as accentYellow from './accent/yellow';
+
+import * as accentRainbow from './accent/rainbow';
+import * as sunset from './accent/sunset';
+
+import * as miyo from './accent/miyo';
+import * as misty from './accent/misty';
+
+
+/**
+ * Creates a new theme object.
+ *
+ * @param {string} name - The name of the theme.
+ * @param {string} description - A brief description of the theme.
+ * @param {string} id - A unique identifier for the theme.
+ * @param {object} accent - The accent colors for the theme.
+ * @param {object} icon - The icon for the theme.
+ * @returns {object} An object representing the newly created theme.
+ */
+const makeTheme = function (name, description, id, accent) {
+    return {
+        defaultMessage: name,
+        description: description,
+        id: id,
+        accent: accent
+    };
 };
-const ACCENT_DEFAULT = ACCENT_RED;
+
+const ACCENT_MAP = {
+    red: makeTheme('Red',
+        'Name of the red color scheme, used by BubbleWrap by default.',
+        'tw.accent.purple',
+        accentPurple
+    ),
+    purple: makeTheme('Purple',
+        'Name of the purple color scheme, used by BubbleWrap by default.',
+        'tw.accent.red',
+        accentRed
+    ),
+    blue: makeTheme('Blue',
+        'Name of the blue color scheme. Matches Scratch before the high contrast update.',
+        'tw.accent.blue',
+        accentBlue
+    ),
+    green: makeTheme('Green',
+        'Name of the green color scheme.',
+        'tw.accent.green',
+        accentGreen
+    ),
+    yellow: makeTheme('Yellow',
+        'Name of the yellow color scheme.',
+        'tw.accent.yellow',
+        accentYellow
+    ),
+    rainbow: makeTheme('Rainbow',
+        'Name of color scheme that uses a rainbow.',
+        'tw.accent.rainbow',
+        accentRainbow
+    ),
+    sunset: makeTheme('Sunset',
+        'Just a chill sunset',
+        'bw.accent.sunset',
+        sunset
+    ),
+    miyo: makeTheme('Miyo',
+        'Miyo is cool.',
+        'bw.accent.miyo',
+        miyo
+    ),
+    misty: makeTheme('Misty',
+        'Misty is cool.',
+        'bw.accent.misty',
+        misty
+    )
+};
+
+const ACCENT_DEFAULT = 'red';
 
 const GUI_LIGHT = 'light';
 const GUI_DARK = 'dark';
@@ -107,7 +175,7 @@ class Theme {
     getGuiColors () {
         return defaultsDeep(
             {},
-            ACCENT_MAP[this.accent].guiColors,
+            ACCENT_MAP[this.accent].accent.guiColors,
             GUI_MAP[this.gui].guiColors,
             guiLight.guiColors
         );
@@ -116,7 +184,7 @@ class Theme {
     getBlockColors () {
         return defaultsDeep(
             {},
-            ACCENT_MAP[this.accent].blockColors,
+            ACCENT_MAP[this.accent].accent.blockColors,
             GUI_MAP[this.gui].blockColors,
             BLOCKS_MAP[this.blocks].colors
         );
@@ -145,17 +213,14 @@ class Theme {
 export {
     Theme,
     defaultBlockColors,
-
-    ACCENT_RED,
-    ACCENT_PURPLE,
-    ACCENT_BLUE,
-    ACCENT_RAINBOW,
+    makeTheme,
+    
     ACCENT_MAP,
-
+    
     GUI_LIGHT,
     GUI_DARK,
     GUI_MAP,
-
+    
     BLOCKS_THREE,
     BLOCKS_DARK,
     BLOCKS_HIGH_CONTRAST,
