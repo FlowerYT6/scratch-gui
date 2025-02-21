@@ -82,7 +82,7 @@ const SBFileUploaderHOC = function (WrappedComponent) {
                                 {
                                     description: 'Scratch Project',
                                     accept: {
-                                        'application/x.scratch.sb3': ['.sb', '.sb2', '.sb3']
+                                        'application/octet-stream': ['.sb', '.sb2', '.sb3']
                                     }
                                 }
                             ]
