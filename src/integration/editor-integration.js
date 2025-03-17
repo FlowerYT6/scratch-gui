@@ -83,7 +83,10 @@ class EditorIntegration extends EventTarget {
             if (newState.scratchGui.mode.isPlayerOnly && !previousState.scratchGui.mode.isPlayerOnly) {
                 this.dispatchEvent(new Event('exit-editor'));
             } else if (!newState.scratchGui.mode.isPlayerOnly && previousState.scratchGui.mode.isPlayerOnly) {
+                // By the time this fires, block editor may already be set up, so have to fire a resize event after
+                // so that it displays as the right size.
                 this.dispatchEvent(new Event('enter-editor'));
+                window.dispatchEvent(new Event('resize'));
             }
 
             previousState = newState;
