@@ -50,12 +50,8 @@ const base = {
     },
     output: {
         library: 'GUI',
-        filename: (
-            process.env.NODE_ENV === 'production' ? `js/${CACHE_EPOCH}/[name].[contenthash].js` : 'js/[name].js'
-        ),
-        chunkFilename: (
-            process.env.NODE_ENV === 'production' ? `js/${CACHE_EPOCH}/[name].[contenthash].js` : 'js/[name].js'
-        ),
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[name].js',
         publicPath: root
     },
     resolve: {
@@ -147,7 +143,8 @@ module.exports = [
             'fullscreen': './src/playground/fullscreen.jsx',
             'embed': './src/playground/embed.jsx',
             'addon-settings': './src/playground/addon-settings.jsx',
-            'credits': './src/playground/credits/credits.jsx'
+            'credits': './src/playground/credits/credits.jsx',
+            'integration': './src/integration/index.js'
         },
         output: {
             path: path.resolve(__dirname, 'build')
@@ -164,14 +161,6 @@ module.exports = [
                     }
                 }
             ])
-        },
-        optimization: {
-            splitChunks: {
-                chunks: 'all',
-                minChunks: 2,
-                minSize: 50000,
-                maxInitialRequests: 5
-            }
         },
         plugins: base.plugins.concat([
             new webpack.DefinePlugin({
