@@ -58,6 +58,17 @@
                 // Do this if the project is owned by the current user
                 gui.setCanSave(true);
 
+                // Implement project and asset saving
+                gui.setProjectSaver(async (projectID, projectJSON) => {
+                    console.log('Save project', projectID, projectJSON);
+                });
+                gui.setThumbnailSaver(async (projectID, thumbnailBlob) => {
+                    console.log('Save thumbnail', projectID, thumbnailBlob);
+                });
+                gui.setAssetSaver(async (md5ext, data) => {
+                    console.log('Save asset', md5ext, data);
+                });
+
                 // GUI starts in player-only mode. Change by calling  gui.enterEditor().
                 document.getElementById('gui-player-only').appendChild(gui.root);
                 document.getElementById('editor-button').addEventListener('click', () => {

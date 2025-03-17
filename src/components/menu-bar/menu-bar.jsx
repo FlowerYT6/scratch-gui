@@ -32,6 +32,7 @@ import FramerateChanger from '../../containers/tw-framerate-changer.jsx';
 import ChangeUsername from '../../containers/tw-change-username.jsx';
 import CloudVariablesToggler from '../../containers/tw-cloud-toggler.jsx';
 import TWSaveStatus from './tw-save-status.jsx';
+import ScratchSaveStatus from './save-status.jsx';
 
 import {openTipsLibrary, openSettingsModal, openRestorePointModal} from '../../reducers/modals';
 import {setPlayer} from '../../reducers/mode';
@@ -339,7 +340,11 @@ class MenuBar extends React.Component {
         const modifier = bowser.mac ? event.metaKey : event.ctrlKey;
         if (modifier) {
             if (event.key.toLowerCase() === 's') {
-                this.props.handleSaveProject();
+                if (this.props.canSave) {
+                    this.handleClickSave();
+                } else {
+                    this.props.handleSaveProject();
+                }
                 event.preventDefault();    
             } else if (event.key.toLowerCase() === 'o') {
                 event.preventDefault();    
@@ -1034,9 +1039,13 @@ class MenuBar extends React.Component {
                 </div>
 
                 <div className={styles.accountInfoGroup}>
-                    <TWSaveStatus
-                        showSaveFilePicker={this.props.showSaveFilePicker}
-                    />
+                    {this.props.canSave ? (
+                        <ScratchSaveStatus />
+                    ) : (
+                        <TWSaveStatus
+                            showSaveFilePicker={this.props.showSaveFilePicker}
+                        />
+                    )}
                 </div>
 
                 {aboutButton}

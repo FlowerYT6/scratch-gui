@@ -28,6 +28,10 @@ class EditorIntegration extends EventTarget {
         this.root.className = styles.gui;
         setAppElement(this.root);
 
+        this._userProjectSaver = () => Promise.reject(new Error('Need to use setProjectSaver(...) to implement saving'));
+        this._userThumbnailSaver = () => Promise.reject(new Error('Need to use setThumbnailSaver(...) to implement saving'));
+        this._userAssetSaver = () => Promise.reject(new Error('Need to use setAssetSaver(...) to implement saving'));
+
         // Supplied to the GUI on render.
         this._props = {
             // Default to project not being owned by user
@@ -39,6 +43,24 @@ class EditorIntegration extends EventTarget {
 
             // This only controls the initial state. Future changes are handled in redux.
             isPlayerOnly: true,
+
+            onUpdateProjectData: async (projectID, projectJSON) => {
+                await this._userProjectSaver(projectID, projectJSON);
+                return {
+                    id: projectID
+                };
+            },
+
+            onUpdateProjectThumbnail: async (projectID, thumbnailBlob) => {
+                await this._userThumbnailSaver(projectID, thumbnailBlob);
+            },
+
+            onUpdateAssetData: async (assetType, dataFormat, data, assetId) => {
+                await this._userAssetSaver(`${assetId}.${dataFormat}`, data);
+                return {
+                    status: 'ok'
+                };
+            }
         };
 
         // Do initial render so below logic works.
@@ -97,6 +119,30 @@ class EditorIntegration extends EventTarget {
         this._props.canSave = canSave;
         this._props.canEditTitle = canSave;
         this._render();
+    }
+
+    /**
+     * Set callback used for saving project JSON.
+     * @param {(projectID: string, projectJSON: string) => Promise<void>} callback
+     */
+    setProjectSaver (callback) {
+        this._userProjectSaver = callback;
+    }
+
+    /**
+     * Set callback used for saving project thumbnails.
+     * @param {(projectID: string, thumbnailBlob: Blob) => Promise<void>} callback
+     */
+    setThumbnailSaver (callback) {
+        this._userThumbnailSaver = callback;
+    }
+
+    /**
+     * Set callback used for saving asset data.
+     * @param {(md5ext: string, data: Uint8Array) => Promise<void>} callback
+     */
+    setAssetSaver (callback) {
+        this._userAssetSaver = callback;
     }
 }
 
