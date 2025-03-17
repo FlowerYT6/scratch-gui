@@ -93,6 +93,9 @@
                     document.getElementById('info-screen').hidden = false;
                 });
 
+                // Optionally enable addons
+                gui.enableAddons();
+
                 // Finally, tell the GUI which project to start loading.
                 gui.loadProjectById('104');
             };

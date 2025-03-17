@@ -8,6 +8,7 @@ import ErrorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
 import GUI from '../containers/gui.jsx';
 import {setProjectId} from '../reducers/project-state.js';
 import {setPlayer} from '../reducers/mode.js';
+import runAddons from '../addons/entry.js';
 import styles from './editor.css';
 
 const WrappedGUI = compose(
@@ -43,6 +44,9 @@ class EditorIntegration extends EventTarget {
 
             // This only controls the initial state. Future changes are handled in redux.
             isPlayerOnly: true,
+
+            // Build-time magic to make block images come from the right spot
+            basePath: process.env.ROOT,
 
             assetHost: 'https://assets.scratch.mit.edu',
             projectHost: 'https://projects.scratch.mit.edu',
@@ -167,6 +171,18 @@ class EditorIntegration extends EventTarget {
      */
     setAssetSaver (callback) {
         this._userAssetSaver = callback;
+    }
+
+    /**
+     * Starts running addons and enables the addon settings button.
+     */
+    enableAddons () {
+        runAddons();
+        this._props.onClickAddonSettings = (addonId) => {
+            const url = `${process.env.ROOT}addons.html${typeof addonId === 'string' ? `#${addonId}` : ''}`;
+            window.open(url);        
+        };
+        this._render();
     }
 }
 
