@@ -126,13 +126,15 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                         return r.arrayBuffer();
                     })
                     .then(buffer => ({data: buffer}));
-            } else {
+            } else if (this.props.projectHost === 'https://projects.scratch.mit.edu') {
                 // TW: Temporary hack for project tokens
                 assetPromise = fetchProjectToken(projectId)
                     .then(token => {
                         storage.setProjectToken(token);
                         return storage.load(storage.AssetType.Project, projectId, storage.DataFormat.JSON);
                     });
+            } else {
+                assetPromise = storage.load(storage.AssetType.Project, projectId, storage.DataFormat.JSON);
             }
 
             return assetPromise

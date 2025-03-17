@@ -58,7 +58,11 @@
                 // Do this if the project is owned by the current user
                 gui.setCanSave(true);
 
-                // Implement project and asset saving
+                // Tell GUI where to load projects and assets from
+                gui.setProjectHost('https://projects.scratch.mit.edu');
+                gui.setAssetHost('https://assets.scratch.mit.edu');
+
+                // Implement project, thumbnail, and asset saving
                 gui.setProjectSaver(async (projectID, projectJSON) => {
                     console.log('Save project', projectID, projectJSON);
                 });

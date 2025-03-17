@@ -44,6 +44,9 @@ class EditorIntegration extends EventTarget {
             // This only controls the initial state. Future changes are handled in redux.
             isPlayerOnly: true,
 
+            assetHost: 'https://assets.scratch.mit.edu',
+            projectHost: 'https://projects.scratch.mit.edu',
+    
             onUpdateProjectData: async (projectID, projectJSON) => {
                 await this._userProjectSaver(projectID, projectJSON);
                 return {
@@ -121,6 +124,24 @@ class EditorIntegration extends EventTarget {
     setCanSave (canSave) {
         this._props.canSave = canSave;
         this._props.canEditTitle = canSave;
+        this._render();
+    }
+
+    /**
+     * Change URL to download projects from.
+     * @param {string} projectHost Gets appended with eg. "/104" (project IDs need not be numbers if you don't want)
+     */
+    setProjectHost (projectHost) {
+        this._props.projectHost = projectHost;
+        this._render();
+    }
+
+    /**
+     * Change URL to download assets from.
+     * @param {string} assetHost Gets appended with eg. "/abcdef...01234.svg"
+     */
+    setAssetHost (assetHost) {
+        this._props.assetHost = assetHost;
         this._render();
     }
 
