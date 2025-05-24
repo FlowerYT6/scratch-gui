@@ -32,18 +32,26 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
         value = Number(value.toFixed(6));
     }
 
-    // Turn the value to a string, for handle boolean values
+    // Turn the value to a string, to handle boolean values
     if (typeof value === 'boolean') {
         value = value.toString();
     }
 
-    // Lists can contain booleans, which should also be turned to strings
+    // Turn the value to a string, to handle Object values
+    // arrays will be confused for lists if we use 'typeof'
+    if (value.constructor.name === 'Object') {
+        value = JSON.stringify(value);
+    }
+
+    // Lists can contain booleans or Objects, which should also be turned to strings
     if (Array.isArray(value)) {
         value = value.slice();
         for (let i = 0; i < value.length; i++) {
             const item = value[i];
             if (typeof item === 'boolean') {
                 value[i] = item.toString();
+            } else if (value.constructor.name === 'Object') {
+                value[i] = JSON.stringify(item);
             }
         }
     }
