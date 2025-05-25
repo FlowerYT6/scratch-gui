@@ -2,6 +2,17 @@ import OpcodeLabels from './opcode-labels.js';
 
 const isUndefined = a => typeof a === 'undefined';
 
+const circularReplacer = () => {
+    const stack = new Set();
+    return function replacer(_, value) {
+        if (typeof value === "object" && value !== null) {
+            if (stack.has(value)) return "{...}";
+            stack.add(value);
+        }
+        return value;
+    };
+}
+
 /**
  * Convert monitors from VM format to what the GUI needs to render.
  * - Convert opcode to a label and a category
@@ -40,7 +51,7 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
     // Turn the value to a string, to handle Object values
     // arrays will be confused for lists if we use 'typeof'
     if (value.constructor.name === 'Object') {
-        value = JSON.stringify(value);
+        value = JSON.stringify(value, circularReplacer);
     }
 
     // Lists can contain booleans or Objects, which should also be turned to strings
@@ -50,8 +61,8 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
             const item = value[i];
             if (typeof item === 'boolean') {
                 value[i] = item.toString();
-            } else if (value.constructor.name === 'Object') {
-                value[i] = JSON.stringify(item);
+            } else if (value[i].constructor.name === 'Object') {
+                value[i] = JSON.stringify(item, circularReplacer);
             }
         }
     }
