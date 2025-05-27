@@ -4,14 +4,14 @@ const isUndefined = a => typeof a === 'undefined';
 
 const circularReplacer = () => {
     const stack = new Set();
-    return function replacer(_, value) {
+    return function replacer(key, value) {
         if (typeof value === "object" && value !== null) {
-            if (stack.has(value)) return "{...}";
+            if (stack.has(value)) return Array.isArray(value) ? "[...]" : "{...}";
             stack.add(value);
         }
         return value;
     };
-}
+};
 
 /**
  * Convert monitors from VM format to what the GUI needs to render.
@@ -48,9 +48,9 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
         value = value.toString();
     }
 
-    // Turn the value to a string, to handle Object values
-    // arrays will be confused for lists if we use 'typeof'
-    if (value.constructor.name === 'Object') {
+    // Turn the value to a string, to handle JSON values
+    // do not convert arrays as it will be confused for lists
+    if (typeof value === 'object' && !Array.isArray(value)) {
         value = JSON.stringify(value, circularReplacer);
     }
 
@@ -61,7 +61,7 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
             const item = value[i];
             if (typeof item === 'boolean') {
                 value[i] = item.toString();
-            } else if (value[i].constructor.name === 'Object') {
+            } else if (typeof value[i] === 'object' && !Array.isArray(value[i])) {
                 value[i] = JSON.stringify(item, circularReplacer);
             }
         }
